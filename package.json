@@ -1,0 +1,15 @@
+{
+  "name": "blame",
+  "main": "./lib/init",
+  "version": "0.0.0",
+  "description": "Show git blame as a gutter.",
+  "keywords": [],
+  "repository": "https://github.com/josa42/atom-blame",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "blamer": "^0.1.9"
+  }
+}
