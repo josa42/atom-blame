@@ -7,6 +7,7 @@
 atom-text-editor::shadow {
   .gutter[gutter-name="blame"] {
     width: 250px;
+    border-right: 1px solid @base-border-color;
   }
   .blame-gutter {
     width: 100%;
@@ -15,8 +16,6 @@ atom-text-editor::shadow {
 
        padding: 0 5px;
        box-sizing: border-box;
-
-       border-right: 1px solid @base-border-color;
 
        white-space: nowrap;
        text-overflow: ellipsis;
