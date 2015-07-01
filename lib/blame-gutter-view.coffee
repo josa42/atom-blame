@@ -1,4 +1,3 @@
-moment = require 'moment'
 blame = require './utils/blame'
 {CompositeDisposable} = require 'atom'
 
