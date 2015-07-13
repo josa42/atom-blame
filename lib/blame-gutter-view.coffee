@@ -3,7 +3,11 @@ blame = require './utils/blame'
 
 class BlameGutterView
 
-  constructor: (@editor) ->
+  constructor: (@state, @editor) ->
+
+    #unless @state.width
+    @state.width = atom.config.get('blame.defaultWidth')
+    @setGutterWidth @state.width
 
     @colors = {}
     @gutter = @editor.addGutter( name: 'blame' )
@@ -53,7 +57,7 @@ class BlameGutterView
           else
             rowCls = 'blame-odd'
         else
-          lineStr = '<br>'
+          neStr= 'removebr>'
 
         lastHash = hash
 
@@ -76,8 +80,13 @@ class BlameGutterView
     item.classList.add 'blame-gutter-inner'
     item.classList.add rowCls
     item.innerHTML = lineStr
-
     item.addEventListener 'click', => @itemClicked(hash)
+
+    resizeHandle = document.createElement('div')
+    resizeHandle.addEventListener 'mousedown', @resizeStarted
+    resizeHandle.classList.add 'blame-gutter-handle'
+
+    item.appendChild resizeHandle
 
     marker = @editor.markBufferRange([[lineNo, 0], [lineNo, 0]])
     @editor.decorateMarker marker, {
@@ -91,6 +100,45 @@ class BlameGutterView
   removeAllMarkers: ->
     marker.destroy() for marker in @markers
     @markers = []
+
+
+  resizeStarted: (e) =>
+    document.addEventListener 'mousemove', @resizeMove
+    document.addEventListener 'mouseup', @resizeStopped
+    @resizeStartedAtX = e.pageX
+    @resizeWidth = @state.width
+
+  resizeStopped: (e) =>
+    document.removeEventListener 'mousemove', @resizeMove
+    document.removeEventListener 'mouseup', @resizeStopped
+
+    e.stopPropagation()
+    e.preventDefault()
+
+  resizeMove: (e) =>
+    diff = e.pageX - @resizeStartedAtX
+    @setGutterWidth(@resizeWidth + diff)
+
+    e.stopPropagation()
+    e.preventDefault()
+
+  setGutterWidth: (width) ->
+    @state.width = Math.max(50, Math.min(width, 500));
+
+    sheet = document.getElementById('blame-gutter-style')
+    unless sheet
+      sheet = document.createElement('style')
+      sheet.type = 'text/css'
+      sheet.id = 'blame-gutter-style'
+
+      document.head.appendChild sheet
+
+    sheet.innerHTML = "
+      atom-text-editor::shadow .gutter[gutter-name=\"blame\"] {
+        width: #{@state.width}px;
+      }
+    "
+
 
   deactivate: ->
     @subscriptions.dispose()
