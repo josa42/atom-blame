@@ -57,7 +57,7 @@ class BlameGutterView
           else
             rowCls = 'blame-odd'
         else
-          neStr= 'removebr>'
+          lineStr= '<br>'
 
         lastHash = hash
 
