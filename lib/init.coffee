@@ -1,13 +1,20 @@
 {CompositeDisposable} = require 'atom'
 BlameGutterView = require './blame-gutter-view'
 
-# https://github.com/atom/atom/pull/5217
-module.exports = GitBlameMe =
+module.exports =
   gitBlameMeView: null
   modalPanel: null
   subscriptions: null
 
-  activate: (state) ->
+  config:
+    defaultWidth:
+      title: 'Default width (px)'
+      type: 'integer'
+      default: 250
+      minimum: 50
+      maximum: 500
+
+  activate: (@state = {}) ->
 
     @gutters = new Map
 
@@ -24,9 +31,9 @@ module.exports = GitBlameMe =
     if gutter
       gutter.toggleVisible()
     else
-      gutter = new BlameGutterView(editor)
+      gutter = new BlameGutterView(@state, editor)
       @gutters.set(editor, gutter)
 
   deactivate: ->
 
-  serialize: ->
+  serialize: -> @state

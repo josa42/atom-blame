@@ -6,7 +6,6 @@
 
 atom-text-editor::shadow {
   .gutter[gutter-name="blame"] {
-    width: 250px;
     border-right: 1px solid @base-border-color;
   }
   .blame-gutter {
@@ -14,22 +13,31 @@ atom-text-editor::shadow {
 
     .blame-gutter-inner {
 
-       padding: 0 5px;
-       box-sizing: border-box;
+      padding: 0 5px;
+      box-sizing: border-box;
 
-       white-space: nowrap;
-       text-overflow: ellipsis;
-       overflow-x: hidden;
-       width: 100%;
-       text-align: left;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+      width: 100%;
+      text-align: left;
 
-       &.blame-odd {
-         background-color: rgba(255, 255, 255, 0.02)
-       }
+      &.blame-odd {
+       background-color: rgba(255, 255, 255, 0.02)
+      }
 
-       &.blame-even {
-         background-color: rgba(0, 0, 0, 0.02)
-       }
-     }
+      &.blame-even {
+       background-color: rgba(0, 0, 0, 0.02)
+      }
+
+      .blame-gutter-handle {
+        position: absolute;
+        width: 4px;
+        height: 100%;
+        right: 0;
+        top: 0;
+        cursor: col-resize;
+      }
+    }
   }
  }
