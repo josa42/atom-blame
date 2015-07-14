@@ -9,9 +9,9 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "activationEvents": [
-    "blame:toggle"
-  ],
+  "activationCommands": {
+    "atom-workspace": ["blame:toggle"]
+  },
   "dependencies": {
     "blamer": "^0.1.9"
   }
