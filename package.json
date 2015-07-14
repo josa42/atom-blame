@@ -1,7 +1,7 @@
 {
   "name": "blame",
   "main": "./lib/init",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Show git blame as a gutter.",
   "keywords": [],
   "repository": "https://github.com/josa42/atom-blame",
@@ -10,7 +10,9 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "activationCommands": {
-    "atom-workspace": ["blame:toggle"]
+    "atom-workspace": [
+      "blame:toggle"
+    ]
   },
   "dependencies": {
     "blamer": "^0.1.9"
