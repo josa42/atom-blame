@@ -57,13 +57,16 @@ class BlameGutterView
           else
             rowCls = 'blame-odd'
         else
-          lineStr= '<br>'
+          lineStr= ''
 
         lastHash = hash
 
         @addMarker idx, hash, rowCls, lineStr
 
   itemClicked: (hash) ->
+  copyClicked: (event) =>
+    hash = event.path[0].getAttribute('data-hash')
+    atom.clipboard.write hash
 
   formateData: (date) ->
     date = new Date date
@@ -79,8 +82,12 @@ class BlameGutterView
     item = document.createElement('div')
     item.classList.add 'blame-gutter-inner'
     item.classList.add rowCls
-    item.innerHTML = lineStr
-    item.addEventListener 'click', => @itemClicked(hash)
+
+    # no need to create objects and events on blank lines
+    if lineStr.length > 0
+      item.appendChild(@copySpan hash)
+      item.appendChild(@wrap lineStr)
+      item.addEventListener 'click', => @itemClicked(hash)
 
     resizeHandle = document.createElement('div')
     resizeHandle.addEventListener 'mousedown', @resizeStarted
@@ -96,6 +103,18 @@ class BlameGutterView
       item: item
     }
     @markers.push marker
+
+  wrap: (str) ->
+    span = document.createElement('span')
+    span.innerHTML = str
+    span
+
+  copySpan: (hash) ->
+    span = document.createElement('span')
+    span.setAttribute('data-hash', hash)
+    span.classList.add 'icon-copy'
+    span.addEventListener 'click', @copyClicked
+    span
 
   removeAllMarkers: ->
     marker.destroy() for marker in @markers
