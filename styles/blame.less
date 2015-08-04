@@ -3,6 +3,7 @@
 // See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
 // for a full listing of what's available.
 @import "ui-variables";
+@import "octicon-mixins";
 
 atom-text-editor::shadow {
   .gutter[gutter-name="blame"] {
@@ -10,7 +11,6 @@ atom-text-editor::shadow {
   }
   .blame-gutter {
     width: 100%;
-
     .blame-gutter-inner {
 
       padding: 0 5px;
@@ -37,6 +37,16 @@ atom-text-editor::shadow {
         right: 0;
         top: 0;
         cursor: col-resize;
+      }
+
+      .icon-copy {
+        .octicon(clippy);
+        cursor: pointer;
+        padding-right: 5px;
+      }
+
+      .icon-copy:hover {
+        color: @text-color-info;
       }
     }
   }
