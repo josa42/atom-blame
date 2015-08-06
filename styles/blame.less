@@ -62,3 +62,44 @@ atom-text-editor::shadow {
     }
   }
  }
+
+.blame-tooltip {
+  text-align: left;
+
+  .head {
+    padding: 0 0 0 50px;
+    margin: 0;
+    height: 40px;
+    white-space: nowrap;
+    position: relative;
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .subject {
+      height: 20px;
+      line-height: 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .author {
+      height: 20px;
+      line-height: 20px;
+      font-size: 10px;
+      font-weight: normal;
+    }
+  }
+
+  .body {
+    white-space: pre;
+    margin-top: 10px;
+
+    &:empty { display: none;}
+  }
+}
