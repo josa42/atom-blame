@@ -1,4 +1,6 @@
 blame = require './utils/blame'
+getCommit = require './utils/get-commit'
+gravatar = require 'gravatar'
 {CompositeDisposable} = require 'atom'
 
 class BlameGutterView
@@ -21,8 +23,12 @@ class BlameGutterView
 
     if @visible
       @update()
+
+      @tooltips ?= new CompositeDisposable
+
       @subscriptions ?= new CompositeDisposable
       @subscriptions.add @editor.onDidSave => @update()
+
       @gutter.show()
 
     else
@@ -34,7 +40,6 @@ class BlameGutterView
   update: () ->
 
     blame @editor.getPath(), (result) =>
-
       @removeAllMarkers()
 
       blameLines = []
@@ -49,7 +54,12 @@ class BlameGutterView
 
         unless lastHash is hash
           dateStr = @formateDate(line.date)
-          lineStr = "#{hash} #{dateStr} #{line.author}"
+
+          if @isCommited(hash)
+            lineStr = "#{hash} #{dateStr} #{line.author}"
+          else
+            lineStr = "#{line.author}"
+
           if commitCount++ % 2 is 0
             rowCls = 'blame-even'
           else
@@ -84,6 +94,9 @@ class BlameGutterView
     if lineStr.length > 0
       item.appendChild(@copySpan hash)
       item.appendChild(@lineSpan lineStr, hash)
+
+      if @isCommited(hash)
+        item.addEventListener 'mouseenter',  => @showCommit(item, hash)
 
     item.appendChild @resizeHandleDiv()
 
@@ -124,6 +137,7 @@ class BlameGutterView
   removeAllMarkers: ->
     marker.destroy() for marker in @markers
     @markers = []
+    @tooltips.dispose()
 
   resizeStarted: (e) =>
     document.addEventListener 'mousemove', @resizeMove
@@ -165,7 +179,31 @@ class BlameGutterView
       }
     """
 
+  isCommited: (hash) -> not /^[0]+$/.test hash
+
+  showCommit: (item, hash) ->
+
+    if !item.getAttribute('data-has-tooltip')
+      item.setAttribute('data-has-tooltip', true)
+
+      msgItem = document.createElement('div')
+      msgItem.classList.add 'blame-tooltip'
+
+      @tooltips.add atom.tooltips.add item, title: msgItem
+
+      getCommit @editor.getPath(), hash.replace(/^[\^]/, ''), (msg) =>
+        avatar = gravatar.url(msg.email, {s: 80});
+        msgItem.innerHTML = """
+          <div class="head">
+            <img class="avatar" src="http:#{avatar}"/>
+            <div class="subject">#{msg.subject}</div>
+            <div class="author">#{msg.author}</div>
+          </div>
+          <div class="body">#{msg.message}</div>
+        """
+
   deactivate: ->
-    @subscriptions.dispose()
+    @subscriptions?.dispose()
+    @tooltips?.dispose()
 
 module.exports = BlameGutterView

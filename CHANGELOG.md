@@ -1,3 +1,6 @@
+## 0.4.0
+* Add Tooltip with commit message
+
 ## 0.3.0
 * Add copy hash action.
 
