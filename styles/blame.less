@@ -13,7 +13,8 @@ atom-text-editor::shadow {
     width: 100%;
     .blame-gutter-inner {
 
-      padding: 0 25px 0 5px;
+      padding: 0 5px 0 5px;
+
       box-sizing: border-box;
 
       white-space: nowrap;
@@ -30,6 +31,13 @@ atom-text-editor::shadow {
        background-color: rgba(0, 0, 0, 0.02)
       }
 
+      &:hover {
+        padding-right: calc(~"10px + 1em");
+        .icon-copy {
+          display: block;
+        }
+      }
+
       .blame-gutter-handle {
         position: absolute;
         width: 4px;
@@ -40,6 +48,7 @@ atom-text-editor::shadow {
       }
 
       .icon-copy {
+        display: none;
         .octicon(clippy, @size: 1em);
         cursor: pointer;
         padding-right: 5px;
