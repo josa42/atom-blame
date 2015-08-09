@@ -4,8 +4,6 @@ blame = require './utils/blame'
 class BlameGutterView
 
   constructor: (@state, @editor) ->
-
-    #unless @state.width
     @state.width = atom.config.get('blame.defaultWidth')
     @setGutterWidth @state.width
 
@@ -50,7 +48,7 @@ class BlameGutterView
         hash = line.rev.replace(/\s.*/, '')
 
         unless lastHash is hash
-          dateStr = @formateData(line.date)
+          dateStr = @formateDate(line.date)
           lineStr = "#{hash} #{dateStr} #{line.author}"
           if commitCount++ % 2 is 0
             rowCls = 'blame-even'
@@ -64,11 +62,12 @@ class BlameGutterView
         @addMarker idx, hash, rowCls, lineStr
 
   itemClicked: (hash) ->
-  copyClicked: (event) =>
+
+  copyClicked: (event) ->
     hash = event.path[0].getAttribute('data-hash')
     atom.clipboard.write hash
 
-  formateData: (date) ->
+  formateDate: (date) ->
     date = new Date date
     yyyy = date.getFullYear()
     mm = date.getMonth() + 1
@@ -76,24 +75,17 @@ class BlameGutterView
     dd = date.getDate()
     dd = "0#{dd}" if dd < 10
 
-    return yyyy + '-' + mm + '-' + dd
+    return "#{yyyy}-#{mm}-#{dd}"
 
   addMarker: (lineNo, hash, rowCls, lineStr) ->
-    item = document.createElement('div')
-    item.classList.add 'blame-gutter-inner'
-    item.classList.add rowCls
+    item = @markerInnerDiv rowCls
 
     # no need to create objects and events on blank lines
     if lineStr.length > 0
       item.appendChild(@copySpan hash)
-      item.appendChild(@wrap lineStr)
-      item.addEventListener 'click', => @itemClicked(hash)
+      item.appendChild(@lineSpan lineStr, hash)
 
-    resizeHandle = document.createElement('div')
-    resizeHandle.addEventListener 'mousedown', @resizeStarted
-    resizeHandle.classList.add 'blame-gutter-handle'
-
-    item.appendChild resizeHandle
+    item.appendChild @resizeHandleDiv()
 
     marker = @editor.markBufferRange([[lineNo, 0], [lineNo, 0]])
     @editor.decorateMarker marker, {
@@ -104,22 +96,34 @@ class BlameGutterView
     }
     @markers.push marker
 
-  wrap: (str) ->
+  markerInnerDiv: (rowCls)  ->
+    item = document.createElement('div')
+    item.classList.add 'blame-gutter-inner'
+    item.classList.add rowCls
+    return item
+
+  resizeHandleDiv: ->
+    resizeHandle = document.createElement('div')
+    resizeHandle.addEventListener 'mousedown', @resizeStarted
+    resizeHandle.classList.add 'blame-gutter-handle'
+    return resizeHandle
+
+  lineSpan: (str, hash) ->
     span = document.createElement('span')
     span.innerHTML = str
-    span
+    span.addEventListener 'click', => @itemClicked(hash)
+    return span
 
   copySpan: (hash) ->
     span = document.createElement('span')
     span.setAttribute('data-hash', hash)
     span.classList.add 'icon-copy'
     span.addEventListener 'click', @copyClicked
-    span
+    return span
 
   removeAllMarkers: ->
     marker.destroy() for marker in @markers
     @markers = []
-
 
   resizeStarted: (e) =>
     document.addEventListener 'mousemove', @resizeMove
@@ -134,6 +138,12 @@ class BlameGutterView
     e.stopPropagation()
     e.preventDefault()
 
+  gutterStyle: ->
+    sheet = document.createElement('style')
+    sheet.type = 'text/css'
+    sheet.id = 'blame-gutter-style'
+    return sheet
+
   resizeMove: (e) =>
     diff = e.pageX - @resizeStartedAtX
     @setGutterWidth(@resizeWidth + diff)
@@ -142,22 +152,18 @@ class BlameGutterView
     e.preventDefault()
 
   setGutterWidth: (width) ->
-    @state.width = Math.max(50, Math.min(width, 500));
+    @state.width = Math.max(50, Math.min(width, 500))
 
     sheet = document.getElementById('blame-gutter-style')
     unless sheet
-      sheet = document.createElement('style')
-      sheet.type = 'text/css'
-      sheet.id = 'blame-gutter-style'
-
+      sheet = @gutterStyle()
       document.head.appendChild sheet
 
-    sheet.innerHTML = "
-      atom-text-editor::shadow .gutter[gutter-name=\"blame\"] {
+    sheet.innerHTML = """
+      atom-text-editor::shadow .gutter[gutter-name="blame"] {
         width: #{@state.width}px;
       }
-    "
-
+    """
 
   deactivate: ->
     @subscriptions.dispose()
