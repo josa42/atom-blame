@@ -1,7 +1,7 @@
 {
   "name": "blame",
   "main": "./lib/init",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Show git blame as a gutter.",
   "keywords": [],
   "repository": "https://github.com/josa42/atom-blame",
