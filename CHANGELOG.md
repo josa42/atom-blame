@@ -1,3 +1,6 @@
+## 0.3.0
+* Add copy hash action.
+
 ## 0.2.0
 * Gutter is now resizable.
 
