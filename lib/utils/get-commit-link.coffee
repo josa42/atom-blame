@@ -5,13 +5,14 @@ configs = require '../config/provider.coffee'
 parseRemote = (remote, config) ->
   for exp in config.exps
     m = remote.match(exp)
-    return { user: m[1], repo: m[2] } if m
+    return { host: m[1],user: m[2], repo: m[3] } if m
 
   return null
 
 getLink = (remote, hash, config) ->
   if data = parseRemote(remote, config)
     return config.template
+      .replace('{host}', data.host)
       .replace('{user}', data.user)
       .replace('{repo}', data.repo)
       .replace('{hash}', hash)
