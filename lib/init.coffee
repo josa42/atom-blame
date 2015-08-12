@@ -24,7 +24,7 @@ module.exports =
   toggleBlameGutter: ->
 
     editor = atom.workspace.getActiveTextEditor()
-    # return unless editor
+    return unless editor
 
     gutter = @gutters.get(editor)
 
