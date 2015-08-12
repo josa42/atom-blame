@@ -24,18 +24,18 @@ class BlameGutterView
     if @visible
       @update()
 
-      @tooltips ?= new CompositeDisposable
-
-      @subscriptions ?= new CompositeDisposable
-      @subscriptions.add @editor.onDidSave => @update()
+      @disposables ?= new CompositeDisposable
+      @disposables.add @editor.onDidSave => @update()
 
       @gutter.show()
 
     else
       @gutter.hide()
+
+      @disposables?.dispose()
+      @disposables = null
+
       @removeAllMarkers()
-      @subscriptions?.dispose()
-      @subscriptions = null
 
   update: () ->
 
@@ -137,7 +137,6 @@ class BlameGutterView
   removeAllMarkers: ->
     marker.destroy() for marker in @markers
     @markers = []
-    @tooltips.dispose()
 
   resizeStarted: (e) =>
     document.addEventListener 'mousemove', @resizeMove
@@ -189,10 +188,10 @@ class BlameGutterView
       msgItem = document.createElement('div')
       msgItem.classList.add 'blame-tooltip'
 
-      @tooltips.add atom.tooltips.add item, title: msgItem
+      @disposables.add atom.tooltips.add item, title: msgItem
 
-      getCommit @editor.getPath(), hash.replace(/^[\^]/, ''), (msg) =>
-        avatar = gravatar.url(msg.email, {s: 80});
+      getCommit @editor.getPath(), hash.replace(/^[\^]/, ''), (msg) ->
+        avatar = gravatar.url(msg.email, { s: 80 })
         msgItem.innerHTML = """
           <div class="head">
             <img class="avatar" src="http:#{avatar}"/>
@@ -203,7 +202,6 @@ class BlameGutterView
         """
 
   deactivate: ->
-    @subscriptions?.dispose()
-    @tooltips?.dispose()
+    @disposables?.dispose()
 
 module.exports = BlameGutterView
