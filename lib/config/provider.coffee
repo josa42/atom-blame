@@ -1,13 +1,17 @@
 module.exports = [{
+  # Bitbucket
   exps: [
-    /^git@github\.com:(.+)\/(.+)\.git$/,
-    /^https:\/\/github\.com\/(.+)\/(.+)\.git$/
+    /^git@(bitbucket\.org):(.+)\/(.+)\.git$/
+    /^https:\/\/(bitbucket\.org)\/(.+)\/(.+)\.git$/
+    /^https:\/\/.+@(bitbucket\.org)\/(.+)\/(.+)\.git$/
   ]
-  template: "https://github.com/{user}/{repo}/commit/{hash}"
+  template: "https://{host}/{user}/{repo}/commits/{hash}"
 },{
+  # Generic (Github, GitLab and others)
   exps: [
-    /^git@bitbucket\.org:(.+)\/(.+)\.git$/
-    /^https:\/\/.+@bitbucket\.org\/(.+)\/(.+)\.git$/
+    /^git@(.*):(.+)\/(.+)\.git$/
+    /^https?:\/\/(.+)\/(.+)\/(.+)(\.git)?$/
+    /^https?:\/\/.+@(.*)\/(.+)\/(.+)(\.git)?$/
   ]
-  template: "https://bitbucket.org/{user}/{repo}/commits/{hash}"
+  template: "https://{host}/{user}/{repo}/commit/{hash}"
 }]
