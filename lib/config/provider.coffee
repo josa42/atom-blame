@@ -2,8 +2,8 @@ module.exports = [{
   # Bitbucket
   exps: [
     /^git@(bitbucket\.org):(.+)\/(.+)\.git$/
-    /^https:\/\/(bitbucket\.org)\/(.+)\/(.+)\.git$/
-    /^https:\/\/.+@(bitbucket\.org)\/(.+)\/(.+)\.git$/
+    /^https:\/\/(bitbucket\.org)\/(.+)\/(.+)(\.git)?$/
+    /^https:\/\/.+@(bitbucket\.org)\/(.+)\/(.+)(\.git)?$/
   ]
   template: "https://{host}/{user}/{repo}/commits/{hash}"
 },{
