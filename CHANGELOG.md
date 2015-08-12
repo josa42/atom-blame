@@ -1,3 +1,6 @@
+## 0.5.0
+* Add open commit action for github and bitbucket
+
 ## 0.4.0
 * Add Tooltip with commit message
 
