@@ -32,8 +32,8 @@ atom-text-editor::shadow {
       }
 
       &:hover {
-        padding-right: calc(~"10px + 1em");
-        .icon-copy {
+        padding-right: calc(~"12px + 2em");
+        .icon {
           display: block;
         }
       }
@@ -47,17 +47,23 @@ atom-text-editor::shadow {
         cursor: col-resize;
       }
 
-      .icon-copy {
+      .icon {
         display: none;
-        .octicon(clippy, @size: 1em);
         cursor: pointer;
         padding-right: 5px;
         position: absolute;
-        right: 0;
       }
 
-      .icon-copy:hover {
-        color: @text-color-info;
+      .icon-copy {
+        .octicon(clippy, @size: 1em);
+        right: calc(~"1em + 2px");
+        &:hover { color: @text-color-info; }
+      }
+
+      .icon-link {
+        .octicon(link-external, @size: 1em);
+        right: 0;
+        &:hover { color: @text-color-info; }
       }
     }
   }
