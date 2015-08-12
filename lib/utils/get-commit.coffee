@@ -1,6 +1,5 @@
+findRepo = require './find-repo'
 Git = require 'git-wrapper'
-path = require 'path'
-fs = require 'fs'
 
 showOpts =
   s: true
@@ -13,16 +12,6 @@ getCache = (file, hash) ->
 
 setCache = (file, hash, msg) ->
   cache["#{file}|#{hash}"] = msg
-
-findRepo = (cpath) ->
-  while cpath and lastPath isnt cpath
-    lastPath = cpath
-    cpath = path.dirname cpath
-
-    rpath = path.join(cpath, '.git')
-    return rpath if fs.existsSync rpath
-
-  return null
 
 getCommitMessage = (file, hash, callback) ->
   repoPath = findRepo(file)

@@ -1,6 +1,8 @@
 blame = require './utils/blame'
 getCommit = require './utils/get-commit'
+getCommitLink = require './utils/get-commit-link'
 gravatar = require 'gravatar'
+open = require 'open'
 {CompositeDisposable} = require 'atom'
 
 class BlameGutterView
@@ -71,7 +73,12 @@ class BlameGutterView
 
         @addMarker idx, hash, rowCls, lineStr
 
-  itemClicked: (hash) ->
+  linkClicked: (hash) ->
+    getCommitLink @editor.getPath(), hash.replace(/^[\^]/, ''), (link) ->
+      if link
+        open link
+      else
+        atom.notifications.addInfo "Unknown url."
 
   copyClicked: (event) ->
     hash = event.path[0].getAttribute('data-hash')
@@ -92,7 +99,9 @@ class BlameGutterView
 
     # no need to create objects and events on blank lines
     if lineStr.length > 0
-      item.appendChild(@copySpan hash)
+      if @isCommited hash
+        item.appendChild(@copySpan hash)
+        item.appendChild(@linkSpan hash)
       item.appendChild(@lineSpan lineStr, hash)
 
       if @isCommited(hash)
@@ -124,14 +133,22 @@ class BlameGutterView
   lineSpan: (str, hash) ->
     span = document.createElement('span')
     span.innerHTML = str
-    span.addEventListener 'click', => @itemClicked(hash)
     return span
 
   copySpan: (hash) ->
     span = document.createElement('span')
     span.setAttribute('data-hash', hash)
+    span.classList.add 'icon'
     span.classList.add 'icon-copy'
     span.addEventListener 'click', @copyClicked
+    return span
+
+  linkSpan: (hash) ->
+    span = document.createElement('span')
+    span.setAttribute('data-hash', hash)
+    span.classList.add 'icon'
+    span.classList.add 'icon-link'
+    span.addEventListener 'click', => @linkClicked(hash)
     return span
 
   removeAllMarkers: ->
