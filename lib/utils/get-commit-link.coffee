@@ -5,7 +5,7 @@ configs = require '../config/provider.coffee'
 parseRemote = (remote, config) ->
   for exp in config.exps
     m = remote.match(exp)
-    return { host: m[1],user: m[2], repo: m[3] } if m
+    return { host: m[1], user: m[2], repo: m[3] } if m
 
   return null
 
@@ -32,7 +32,6 @@ getCommitLink = (file, hash, callback) ->
 
     for config in configs
       link = getLink(remote, hash, config)
-      console.log link, remote, hash, config
       return callback(link) if link
 
     callback(null)
