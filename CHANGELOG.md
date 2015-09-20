@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0
+
+* Add basic specs
+
 ## 0.5.0
 
 * Add open commit action for github and bitbucket
