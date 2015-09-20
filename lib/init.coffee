@@ -17,9 +17,10 @@ module.exports =
   activate: (@state = {}) ->
 
     @gutters = new Map
+    @disposables = new CompositeDisposable
 
-    atom.commands.add 'atom-workspace',
-      'blame:toggle': => @toggleBlameGutter()
+    @disposables.add atom.commands.add 'atom-workspace', 'blame:toggle': =>
+      @toggleBlameGutter()
 
   toggleBlameGutter: ->
 
@@ -32,8 +33,10 @@ module.exports =
       gutter.toggleVisible()
     else
       gutter = new BlameGutterView(@state, editor)
+      @disposables.add gutter
       @gutters.set(editor, gutter)
 
   deactivate: ->
+    @disposables.dispose()
 
   serialize: -> @state
