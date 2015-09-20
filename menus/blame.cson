@@ -2,19 +2,19 @@
 'context-menu':
   'atom-text-editor': [
     {
-      'label': 'Toggle git-blame-me'
-      'command': 'git-blame-me:toggle'
+      'label': 'Toggle blamee'
+      'command': 'blame:toggle'
     }
   ]
 'menu': [
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'git-blame-me'
+      'label': 'Blame'
       'submenu': [
         {
           'label': 'Toggle'
-          'command': 'git-blame-me:toggle'
+          'command': 'blame:toggle'
         }
       ]
     ]
