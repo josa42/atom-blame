@@ -218,7 +218,8 @@ class BlameGutterView
           <div class="body">#{msg.message}</div>
         """
 
-  deactivate: ->
+  dispose: ->
+    @gutter.destroy()
     @disposables?.dispose()
 
 module.exports = BlameGutterView
