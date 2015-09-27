@@ -9,5 +9,14 @@ Show git blame as a gutter.
 
 ![](https://raw.githubusercontent.com/josa42/atom-blame/master/screenshot.png)
 
+
+## Custom repository browser
+
+To use a custom repository browser (like [gitweb](http://git-scm.com/docs/gitweb)), set an URL template in the git config file:
+
+    git config --local --add remote.origin.repositorybrowserurl "http://example.com/gitweb/?p=my_repo.git;a=commit;h={hash}"
+
+`{hash}` will be replaced with the actual hash of selected commit.
+
 Todo:
 * Handle Folding right
