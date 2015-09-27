@@ -25,7 +25,7 @@ getCommitLink = (file, hash, callback) ->
   return unless repoPath
 
   git = new Git('git-dir': repoPath)
-  git.exec 'config', get: true, ['remote.origin.repositorybrowserurl'], (error, url) ->
+  git.exec 'config', get: true, ['atom-blame.browser-url'], (error, url) ->
 
     link = url.replace(/(^\s+|\s+$)/g, '')
               .replace('{hash}', hash)
