@@ -8,6 +8,8 @@
     "blame", "vcs", "git", "svn", "subversion", "hg", "mercurial"
   ],
   "repository": "https://github.com/josa42/atom-blame",
+  "bugs": "https://github.com/josa42/atom-blame",
+  "contributors": [],
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
