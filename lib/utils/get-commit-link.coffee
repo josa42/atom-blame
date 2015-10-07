@@ -25,16 +25,23 @@ getCommitLink = (file, hash, callback) ->
   return unless repoPath
 
   git = new Git('git-dir': repoPath)
-  git.exec 'config', get: true, ['remote.origin.url'], (error, remote) ->
-    return console.error(error) if error
+  git.exec 'config', get: true, ['atom-blame.browser-url'], (error, url) ->
 
-    remote = remote.replace(/(^\s+|\s+$)/g, '')
+    link = url.replace(/(^\s+|\s+$)/g, '')
+              .replace('{hash}', hash)
 
-    for config in configs
-      link = getLink(remote, hash, config)
-      return callback(link) if link
+    return callback(link) if link
 
-    callback(null)
+    git.exec 'config', get: true, ['remote.origin.url'], (error, remote) ->
+      return console.error(error) if error
+
+      remote = remote.replace(/(^\s+|\s+$)/g, '')
+
+      for config in configs
+        link = getLink(remote, hash, config)
+        return callback(link) if link
+
+      callback(null)
 
 
 module.exports = getCommitLink
