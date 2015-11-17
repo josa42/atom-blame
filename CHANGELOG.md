@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.0
+* Convert to js
+
 ## 0.7.0
 * Add option to open link to custom repository browser (pabra)
 * fix typo in context menu (pabra)
