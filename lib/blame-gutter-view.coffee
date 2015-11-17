@@ -3,7 +3,8 @@ getCommit = require './utils/get-commit'
 getCommitLink = require './utils/get-commit-link'
 gravatar = require 'gravatar'
 open = require 'open'
-{CompositeDisposable} = require 'atom'
+
+{ CompositeDisposable } = require 'atom'
 
 class BlameGutterView
 
@@ -205,18 +206,25 @@ class BlameGutterView
       msgItem = document.createElement('div')
       msgItem.classList.add 'blame-tooltip'
 
-      @disposables.add atom.tooltips.add item, title: msgItem
-
-      getCommit @editor.getPath(), hash.replace(/^[\^]/, ''), (msg) ->
+      getCommit @editor.getPath(), hash.replace(/^[\^]/, ''), (msg) =>
         avatar = gravatar.url(msg.email, { s: 80 })
-        msgItem.innerHTML = """
-          <div class="head">
-            <img class="avatar" src="http:#{avatar}"/>
-            <div class="subject">#{msg.subject}</div>
-            <div class="author">#{msg.author}</div>
+        @disposables.add atom.tooltips.add item, title: """
+          <div class="blame-tooltip">
+            <div class="head">
+              <img class="avatar" src="http:#{avatar}"/>
+              <div class="subject">#{msg.subject}</div>
+              <div class="author">#{msg.author}</div>
+            </div>
+            <div class="body">#{msg.message}</div>
           </div>
-          <div class="body">#{msg.message}</div>
         """
+
+        @triggerEvent item, 'mouseenter'
+
+  triggerEvent: (element, eventName) ->
+    evObj = document.createEvent('Events')
+    evObj.initEvent(eventName, true, false)
+    element.dispatchEvent(evObj)
 
   dispose: ->
     @gutter.destroy()
