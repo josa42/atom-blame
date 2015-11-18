@@ -32,7 +32,7 @@ atom-text-editor::shadow {
       }
 
       &:hover {
-        padding-right: calc(~"12px + 2em");
+        padding-right: calc(~"14px + 3em");
         .icon {
           display: block;
         }
@@ -52,6 +52,12 @@ atom-text-editor::shadow {
         cursor: pointer;
         padding-right: 5px;
         position: absolute;
+      }
+
+      .icon-diff {
+        .octicon(diff, @size: 1em);
+        right: calc(~"2em + 4px");
+        &:hover { color: @text-color-info; }
       }
 
       .icon-copy {
