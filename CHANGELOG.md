@@ -2,6 +2,10 @@
 
 ## 0.8.0
 * Convert to js
+* Fix tooltip
+
+## 0.7.1
+* Fix tooltip
 
 ## 0.7.0
 * Add option to open link to custom repository browser (pabra)
