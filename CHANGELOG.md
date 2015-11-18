@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.1
+* Fix resizing
+
 ## 0.8.0
 * Convert to js
 * Fix tooltip
