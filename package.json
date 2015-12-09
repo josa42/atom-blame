@@ -18,7 +18,8 @@
   "dependencies": {
     "blamer": "^0.1.9",
     "git-wrapper": "^0.1.1",
-    "gravatar": "^1.3.0",
+    "gravatar": "^1.4.0",
+    "moment": "^2.10.6",
     "open": "0.0.5"
   }
 }
