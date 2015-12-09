@@ -1,7 +1,7 @@
 {
   "name": "blame",
   "main": "./lib/init",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "Show git blame as a gutter.",
   "author": "Josa Gesell <josa@gesell.me>",
   "keywords": [],
