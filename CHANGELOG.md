@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.0
+* Add configs to customize gutter and date fromat
+
 ## 0.8.1
 * Fix resizing
 
