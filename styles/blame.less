@@ -9,6 +9,7 @@ atom-text-editor::shadow {
   .gutter[gutter-name="blame"] {
     border-right: 1px solid @base-border-color;
   }
+
   .blame-gutter {
     width: 100%;
     .blame-gutter-inner {
@@ -72,11 +73,14 @@ atom-text-editor::shadow {
 .blame-tooltip {
   text-align: left;
 
+  max-width: 500px;
+  min-width: 200px;
+
   .head {
     padding: 0 0 0 50px;
     margin: 0;
     height: 40px;
-    white-space: nowrap;
+
     position: relative;
 
     .avatar {
@@ -92,6 +96,12 @@ atom-text-editor::shadow {
       line-height: 20px;
       font-size: 14px;
       font-weight: bold;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      width: 100%;
+      white-space: nowrap;
     }
 
     .author {
@@ -103,8 +113,10 @@ atom-text-editor::shadow {
   }
 
   .body {
-    white-space: pre;
+    white-space: pre-wrap;
     margin-top: 10px;
+
+    line-height: 1.4;
 
     &:empty { display: none;}
   }

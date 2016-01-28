@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.1
+* Fix styling for long subjects
+
 ## 0.9.0
 * Add configs to customize gutter and date fromat
 
