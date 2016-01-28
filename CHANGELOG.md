@@ -2,6 +2,7 @@
 
 ## 0.9.1
 * Fix styling for long subjects
+* Add the possibility to customize gutter colors
 
 ## 0.9.0
 * Add configs to customize gutter and date fromat
