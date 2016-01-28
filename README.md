@@ -9,6 +9,18 @@ Show git blame as a gutter.
 
 ![](https://raw.githubusercontent.com/josa42/atom-blame/master/screenshot.png)
 
+## Customize Gutter colors
+
+You can customize the gutter colors by adding the following lines to your
+stylesheet (`~/.atom/styles.less`).
+
+```CSS
+atom-text-editor::shadow .blame-gutter {
+  .hash   { color: white; }
+  .date   { color: white; }
+  .author { color: white; }
+}
+```
 
 ## Custom repository browser
 
