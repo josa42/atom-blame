@@ -33,7 +33,15 @@ atom-text-editor::shadow {
       }
 
       &:hover {
-        padding-right: calc(~"12px + 2em");
+
+        &.action-count-2 {
+          padding-right: calc(~"12px + 2em");
+        }
+
+        &.action-count-1 {
+          padding-right: calc(~"6px + 1em");
+        }
+
         .icon {
           display: block;
         }
@@ -57,8 +65,12 @@ atom-text-editor::shadow {
 
       .icon-copy {
         .octicon(clippy, @size: 1em);
-        right: calc(~"1em + 2px");
+        right: 0;
         &:hover { color: @text-color-info; }
+      }
+
+      &.action-count-2 .icon-copy {
+        right: calc(~"1em + 2px");
       }
 
       .icon-link {
