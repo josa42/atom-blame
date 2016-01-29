@@ -5,7 +5,11 @@
 [![Package version!](https://img.shields.io/apm/v/blame.svg?style=flat-square)](https://atom.io/packages/blame)
 [![Dependencies!](https://img.shields.io/david/josa42/atom-blame.svg?style=flat-square)](https://david-dm.org/josa42/atom-blame)
 
-Show git blame as a gutter.
+Show blame as a gutter.
+
+Supported vcs:
+- git
+- mercurial
 
 ![](https://raw.githubusercontent.com/josa42/atom-blame/master/screenshot.png)
 
