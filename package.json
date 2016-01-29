@@ -2,9 +2,11 @@
   "name": "blame",
   "main": "./lib/init",
   "version": "0.10.0",
-  "description": "Show git blame as a gutter.",
+  "description": "Show blame annotations (git, svn, hg).",
   "author": "Josa Gesell <josa@gesell.me>",
-  "keywords": [],
+  "keywords": [
+    "blame", "vcs", "git", "svn", "subversion", "hg", "mercurial"
+  ],
   "repository": "https://github.com/josa42/atom-blame",
   "license": "MIT",
   "engines": {

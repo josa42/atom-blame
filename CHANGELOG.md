@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.0
+- Add Subversion support
+- Add Mecurial support
+
 ## 0.10.0
 * Use only first line as subject (#17)
 
