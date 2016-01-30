@@ -1,8 +1,15 @@
 language: objective-c
 
+addons:
+  ssh_known_hosts:
+    - github.com
+    - bitbucket.org
+
 notifications:
   email:
     on_success: never
     on_failure: change
+
+before_script: 'echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 
 script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
