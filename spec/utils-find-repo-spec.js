@@ -7,23 +7,17 @@ import rmdir from './utils/rmdir';
 import async from './utils/async';
 import findRepo from '../lib/utils/find-repo';
 
+import { cloneAll, cleanAll } from './utils/fixture-repos';
+
 let testRepo = 'git@github.com:OliverLetterer/dummy-repo.git';
 
 describe('utils/find-repo', () => {
 
-  process.chdir(path.join(__dirname, ''));
-
-  let repoPath = path.join(process.cwd(), 'test-repo');
+  let repoPath = path.join(__dirname, 'fixtures', 'git-repo');
   let gitDirPath = path.join(repoPath, '.git');
 
-  beforeEach(async(done => {
-    let git = new Git();
-    git.exec('clone', {}, [testRepo, 'test-repo'], (err, msg) => {
-      done();
-    });
-  }));
-
-  afterEach(() => rmdir('test-repo'));
+  beforeEach(async(() => cloneAll()))
+  // afterEach(() => cleanAll())
 
   describe('findRepo()', () => {
 

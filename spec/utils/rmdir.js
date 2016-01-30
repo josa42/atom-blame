@@ -4,6 +4,13 @@ import fs  from 'fs';
 import path from 'path';
 
 function rmdir(dir) {
+
+  try {
+    fs.accessSync(dir, fs.F_OK)
+  } catch (e) {
+    return
+  }
+
   let list = fs.readdirSync(dir);
 
   for(let i = 0; i < list.length; i++) {
