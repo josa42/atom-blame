@@ -10,6 +10,8 @@ notifications:
     on_success: never
     on_failure: change
 
-before_script: 'echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
+before_script:
+  - 'echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
+  - 'echo -e "[hostfingerprints]\nbitbucket.org = 46:de:34:e7:9b:18:cd:7f:ae:fd:8b:e3:bc:f4:1a:5e:38:d7:ac:24" > ~/.hgrc'
 
 script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'

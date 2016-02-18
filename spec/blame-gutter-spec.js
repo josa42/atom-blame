@@ -7,10 +7,9 @@
 
 import path from 'path'
 import async from './utils/async'
-import { cloneAll, cleanAll } from './utils/fixture-repos';
+import { cloneGit } from './utils/fixture-repos';
 
-beforeEach(async(() => cloneAll()))
-// afterEach(() => cleanAll())
+beforeEach(async(() => cloneGit()))
 
 let readmePath = path.join(__dirname, 'fixtures', 'git-repo', 'readme.md');
 
