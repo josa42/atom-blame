@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.10.1
+* Compatibility fixes for Atom 1.13
+
 ## 0.10.0
 * Use only first line as subject (#17)
 
