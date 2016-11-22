@@ -15,7 +15,7 @@ You can customize the gutter colors by adding the following lines to your
 stylesheet (`~/.atom/styles.less`).
 
 ```CSS
-atom-text-editor::shadow .blame-gutter {
+atom-text-editor .blame-gutter {
   .hash   { color: white; }
   .date   { color: white; }
   .author { color: white; }
