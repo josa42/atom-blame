@@ -5,6 +5,8 @@
 @import "ui-variables";
 @import "octicon-mixins";
 
+// TODO remove `::shadow` when  Atom 1.3 is stable
+atom-text-editor,
 atom-text-editor::shadow {
   .gutter[gutter-name="blame"] {
     border-right: 1px solid @base-border-color;
