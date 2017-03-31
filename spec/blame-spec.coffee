@@ -12,7 +12,7 @@ describe 'Blame', ->
 
     editor = atom.workspace.getActiveTextEditor()
     editorElement = atom.views.getView(editor)
-    gutterElement = editorElement.shadowRoot
+    gutterElement = editorElement
       .querySelector('.gutter[gutter-name=blame]')
 
     return gutterElement
