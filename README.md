@@ -31,7 +31,7 @@ git config --local --add atom-blame.browser-url "http://example.com/gitweb/?p=my
 ```
 
 `{hash}` will be replaced with the actual short-format hash of selected commit.
-`{lhash}` will be replaced with the long-format hash of selected commit.
+`{long-hash}` will be replaced with the long-format hash of selected commit.
 
 Todo:
 * Handle Folding right
