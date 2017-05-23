@@ -23,6 +23,8 @@ atom-text-editor {
       overflow-x: hidden;
       width: 100%;
       text-align: left;
+      
+      transition: 0.3s background;
 
       &.blame-odd {
        background-color: rgba(255, 255, 255, 0.02)
@@ -37,6 +39,10 @@ atom-text-editor {
         .icon {
           display: block;
         }
+      }
+      
+      &.hihlight {
+        background-color: rgba(128, 128, 128, 0.15);
       }
 
       .blame-gutter-handle {
