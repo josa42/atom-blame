@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "blamer": "^0.1.13",
+    "color-rainbow": "0.0.0",
     "git-wrapper": "^0.1.1",
     "gravatar": "^1.4.0",
     "moment": "^2.18.1",
