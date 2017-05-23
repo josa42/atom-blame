@@ -30,7 +30,8 @@ To use a custom repository browser (like [gitweb](http://git-scm.com/docs/gitweb
 git config --local --add atom-blame.browser-url "http://example.com/gitweb/?p=my_repo.git;a=commit;h={hash}"
 ```
 
-`{hash}` will be replaced with the actual hash of selected commit.
+`{hash}` will be replaced with the actual short-format hash of selected commit.
+`{long-hash}` will be replaced with the long-format hash of selected commit.
 
 Todo:
 * Handle Folding right
