@@ -1,51 +1,47 @@
-"use babel"
+'use babel'
 
-import fs  from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
 import { exec } from 'child_process'
-import Git from 'git-wrapper';
-import rmdir from './rmdir';
+import Git from 'git-wrapper'
+import rmdir from './rmdir'
 
 const git = new Git()
 
 // const gitRepoUrl = 'git@github.com:OliverLetterer/dummy-repo.git';
-const gitRepoUrl = 'https://github.com/OliverLetterer/dummy-repo.git';
-const svnRepoUrl = 'https://github.com/OliverLetterer/dummy-repo';
-const hgRepoUrl = 'https://josa@bitbucket.org/josa/fixture-hg-repo';
+const gitRepoUrl = 'https://github.com/OliverLetterer/dummy-repo.git'
+const svnRepoUrl = 'https://github.com/OliverLetterer/dummy-repo'
+const hgRepoUrl = 'https://josa@bitbucket.org/josa/fixture-hg-repo'
 const fixturePath = path.join(__dirname, '..', 'fixtures')
 
 let createdRepos = []
 
-function dirExists(dirPath) {
+function dirExists (dirPath) {
   try {
     return fs.lstatSync(dirPath).isDirectory()
-  }
-  catch (e) {
+  } catch (e) {
     return false
   }
 }
 
-function createFixtureDir(dirPath) {
-  const currentPath = process.cwd()
+function createFixtureDir (dirPath) {
   if (!dirExists(fixturePath)) {
     fs.mkdirSync(fixturePath)
   }
   process.chdir(fixturePath)
 }
 
-function execCmd(cmd) {
+function execCmd (cmd) {
   return new Promise((resolve, reject) => {
     exec(cmd, { fixturePath }, (error, stdout, stderr) => {
-
-      if (stderr) { return reject(new Error(stderr)) }
+      if (error || stderr) { return reject(error || new Error(stderr)) }
 
       resolve()
     })
-  });
+  })
 }
 
-export function cloneGit() {
-
+export function cloneGit () {
   if (createdRepos.indexOf('git') === -1) {
     createdRepos.push('git')
 
@@ -55,7 +51,7 @@ export function cloneGit() {
     return new Promise((resolve, reject) => {
       git.exec('clone', {}, [ gitRepoUrl, 'git-repo' ], (err, msg) => {
         if (err) { return reject(err) }
-        resolve();
+        resolve()
       })
     })
   }
@@ -63,7 +59,7 @@ export function cloneGit() {
   return Promise.resolve()
 }
 
-export function cloneHg() {
+export function cloneHg () {
   if (createdRepos.indexOf('hg') === -1) {
     createdRepos.push('hg')
 
@@ -75,7 +71,7 @@ export function cloneHg() {
   return Promise.resolve()
 }
 
-export function cloneSvn() {
+export function cloneSvn () {
   if (createdRepos.indexOf('svn') === -1) {
     createdRepos.push('svn')
 
@@ -86,7 +82,6 @@ export function cloneSvn() {
   }
   return Promise.resolve()
 }
-
 
 export function cloneAll () {
   return Promise.all([ cloneGit(), cloneSvn(), cloneHg() ])

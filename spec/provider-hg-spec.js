@@ -1,8 +1,8 @@
-"use babel"
+'use babel'
 
 import path from 'path'
 import async from './utils/async'
-import { cloneSvn } from './utils/fixture-repos';
+import { cloneSvn } from './utils/fixture-repos'
 import providerFactory from '../lib/provider/factory'
 
 const filePath = path.join(__dirname, 'fixtures', 'hg-repo', 'README.md')
@@ -12,7 +12,6 @@ beforeEach(async(() => cloneSvn()))
 
 describe('Blame (hg)', () => {
   it('should blame readme', async((done) => {
-
     provider.blame((result) => {
       expect(result).toEqual({
         1: {

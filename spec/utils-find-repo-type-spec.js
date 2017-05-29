@@ -1,8 +1,8 @@
-"use babel"
+'use babel'
 
 import path from 'path'
 import async from './utils/async'
-import { cloneAll } from './utils/fixture-repos';
+import { cloneAll } from './utils/fixture-repos'
 import findRepoType from '../lib/utils/find-repo-type'
 
 beforeEach(async(() => cloneAll()))

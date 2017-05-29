@@ -1,4 +1,4 @@
-"use babel"
+'use babel'
 
 // Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
 //
@@ -7,24 +7,23 @@
 
 import path from 'path'
 import async from './utils/async'
-import { cloneGit } from './utils/fixture-repos';
+import { cloneGit } from './utils/fixture-repos'
 
 beforeEach(async(() => cloneGit()))
 
-let readmePath = path.join(__dirname, 'fixtures', 'git-repo', 'readme.md');
+let readmePath = path.join(__dirname, 'fixtures', 'git-repo', 'readme.md')
 
 describe('Blame', () => {
-  var workspaceElement, activationPromise, editorElement
+  let workspaceElement, activationPromise
 
-  function activeGutterElement() {
-    editor = atom.workspace.getActiveTextEditor()
-    editorElement = atom.views.getView(editor)
-    gutterElement = editorElement.shadowRoot
+  function activeGutterElement () {
+    const editor = atom.workspace.getActiveTextEditor()
+    const editorElement = atom.views.getView(editor)
+    const gutterElement = editorElement.shadowRoot
       .querySelector('.gutter[gutter-name=blame]')
 
     return gutterElement
   }
-
 
   beforeEach(() => {
     workspaceElement = atom.views.getView(atom.workspace)
@@ -33,11 +32,9 @@ describe('Blame', () => {
 
   describe('when the blame:toggle event is triggered', () => {
     it('hides and shows the gutter', () => {
-
       waitsForPromise(() => atom.workspace.open(readmePath))
 
       waitsForPromise(() => {
-
         expect(activeGutterElement()).not.toExist()
 
         atom.commands.dispatch(workspaceElement, 'blame:toggle')
@@ -46,8 +43,7 @@ describe('Blame', () => {
       })
 
       runs(() => {
-
-        gutterElement = activeGutterElement()
+        const gutterElement = activeGutterElement()
         expect(gutterElement).toExist()
         expect(gutterElement.style.display).toBe('')
 
@@ -59,11 +55,9 @@ describe('Blame', () => {
   })
   describe('when when package is deativated', () => {
     it('removes the gutter', () => {
-
       waitsForPromise(() => atom.workspace.open(readmePath))
 
-      waitsForPromise (() => {
-
+      waitsForPromise(() => {
         expect(activeGutterElement()).not.toExist()
 
         atom.commands.dispatch(workspaceElement, 'blame:toggle')
@@ -72,7 +66,6 @@ describe('Blame', () => {
       })
 
       runs(() => {
-
         expect(activeGutterElement()).toExist()
         atom.packages.deactivatePackage('blame')
 

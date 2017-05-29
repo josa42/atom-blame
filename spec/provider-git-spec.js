@@ -1,8 +1,8 @@
-"use babel"
+'use babel'
 
 import path from 'path'
 import async from './utils/async'
-import { cloneGit } from './utils/fixture-repos';
+import { cloneGit } from './utils/fixture-repos'
 import providerFactory from '../lib/provider/factory'
 
 const filePath = path.join(__dirname, 'fixtures', 'git-repo', 'README.md')
@@ -12,7 +12,6 @@ beforeEach(async(() => cloneGit()))
 
 describe('Blame (git)', () => {
   it('should blame readme', async((done) => {
-
     provider.blame((result) => {
       expect(result).toEqual({
         1: {
