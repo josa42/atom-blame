@@ -4,6 +4,14 @@
 - Add Subversion support
 - Add Mecurial support
 
+## 0.10.2
+* Hide tooltips on scroll
+* Fix error when quickly opened and closed
+* Update depdency blamer to 0.1.12
+
+## 0.10.1
+* Compatibility fixes for Atom 1.13
+
 ## 0.10.0
 * Use only first line as subject (#17)
 

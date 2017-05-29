@@ -1,18 +1,24 @@
 {
   "name": "blame",
   "main": "./lib/init",
-  "version": "0.10.0",
-  "description": "Show blame annotations (git, svn, hg).",
+  "version": "0.12.0",
+  "description": "Show git blame as a gutter.",
   "author": "Josa Gesell <josa@gesell.me>",
   "keywords": [
-    "blame", "vcs", "git", "svn", "subversion", "hg", "mercurial"
+    "blame",
+    "vcs",
+    "git",
+    "svn",
+    "subversion",
+    "hg",
+    "mercurial"
   ],
   "repository": "https://github.com/josa42/atom-blame",
   "bugs": "https://github.com/josa42/atom-blame",
   "contributors": [],
   "license": "MIT",
   "engines": {
-    "atom": ">=1.0.0 <2.0.0"
+    "atom": ">=1.13.0 <2.0.0"
   },
   "activationCommands": {
     "atom-workspace": [
@@ -20,10 +26,17 @@
     ]
   },
   "dependencies": {
-    "blamer": "^0.1.9",
+    "blamer": "^0.1.13",
+    "color-rainbow": "0.0.0",
     "git-wrapper": "^0.1.1",
     "gravatar": "^1.4.0",
-    "moment": "^2.10.6",
+    "moment": "^2.18.1",
     "open": "0.0.5"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0"
   }
 }
