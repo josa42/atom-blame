@@ -19,7 +19,7 @@ describe('Blame', () => {
   function activeGutterElement () {
     const editor = atom.workspace.getActiveTextEditor()
     const editorElement = atom.views.getView(editor)
-    const gutterElement = editorElement.shadowRoot
+    const gutterElement = editorElement
       .querySelector('.gutter[gutter-name=blame]')
 
     return gutterElement
