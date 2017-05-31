@@ -13,25 +13,24 @@ beforeEach(async(() => cloneSvn()))
 describe('Blame (svn)', () => {
   it('should blame readme', async((done) => {
     provider.blame((result) => {
-      expect(result).toEqual({
-        1: {
-          rev: '2',
-          author: 'josa42',
-          date: '2017-05-31 13:39:33 +0200',
-          line: '1'
-        },
-        2: {
-          rev: '3',
-          author: 'josa42',
-          date: '2017-05-31 13:39:56 +0200',
-          line: '2'
-        },
-        3: {
-          rev: '4',
-          author: 'josa42',
-          date: '2017-05-31 13:40:43 +0200',
-          line: '3'
-        }
+      expect(result).not.toBe(null)
+      expect(result[1]).toEqual({
+        rev: '2',
+        author: 'josa42',
+        date: '2017-05-31T11:39:33.765Z',
+        line: '1'
+      })
+      expect(result[2]).toEqual({
+        rev: '3',
+        author: 'josa42',
+        date: '2017-05-31T11:39:56.797Z',
+        line: '2'
+      })
+      expect(result[3]).toEqual({
+        rev: '4',
+        author: 'josa42',
+        date: '2017-05-31T11:40:43.029Z',
+        line: '3'
       })
 
       done()
