@@ -10,7 +10,7 @@ const provider = providerFactory(filePath)
 
 beforeEach(async(() => cloneSvn()))
 
-describe('Blame (svn)', () => {
+xdescribe('Blame (svn)', () => {
   it('should blame readme', async((done) => {
     provider.blame((result) => {
       expect(result).toEqual({
