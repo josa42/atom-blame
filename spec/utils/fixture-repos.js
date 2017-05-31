@@ -31,11 +31,10 @@ function createFixtureDir (dirPath) {
   process.chdir(fixturePath)
 }
 
-function execCmd (cmd) {
+function execCmd (cmd, { ignoreStderr = false } = {}) {
   return new Promise((resolve, reject) => {
     exec(cmd, { fixturePath }, (error, stdout, stderr) => {
-      if (error || stderr) { return reject(error || new Error(stderr)) }
-
+      if (error || (!ignoreStderr && stderr)) { return reject(error || new Error(stderr)) }
       resolve()
     })
   })
@@ -66,7 +65,7 @@ export function cloneHg () {
     createFixtureDir()
     rmdir('hg-repo')
 
-    return execCmd(`hg clone --insecure ${hgRepoUrl} hg-repo`)
+    return execCmd(`hg clone --insecure ${hgRepoUrl} hg-repo`, { ignoreStderr: true })
   }
   return Promise.resolve()
 }
