@@ -10,31 +10,30 @@ const provider = providerFactory(filePath)
 
 beforeEach(async(() => cloneSvn()))
 
-xdescribe('Blame (svn)', () => {
+describe('Blame (svn)', () => {
   it('should blame readme', async((done) => {
     provider.blame((result) => {
       expect(result).toEqual({
         1: {
-          author: 'Oliver Letterer',
-          date: '2015-08-03 09:54:04 +0200',
-          line: '1',
-          rev: '^1c24e9d'
+          rev: '2',
+          author: 'josa42',
+          date: '2017-05-31 13:39:33 +0200',
+          line: '1'
         },
         2: {
-          author: 'Yovoslav Ivanov',
-          date: '2015-08-03 10:02:12 +0200',
-          line: '2',
-          rev: '6ef63d49'
+          rev: '3',
+          author: 'josa42',
+          date: '2017-05-31 13:39:56 +0200',
+          line: '2'
         },
         3: {
-          author: 'Yovoslav Ivanov',
-          date: '2015-08-03 10:03:21 +0200',
-          line: '3',
-          rev: '629e4543'
+          rev: '4',
+          author: 'josa42',
+          date: '2017-05-31 13:40:43 +0200',
+          line: '3'
         }
       })
 
-      console.log(result)
       done()
     })
   }))

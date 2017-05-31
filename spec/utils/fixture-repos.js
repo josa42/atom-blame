@@ -10,7 +10,7 @@ const git = new Git()
 
 // const gitRepoUrl = 'git@github.com:OliverLetterer/dummy-repo.git';
 const gitRepoUrl = 'https://github.com/OliverLetterer/dummy-repo.git'
-const svnRepoUrl = 'https://github.com/OliverLetterer/dummy-repo'
+const svnRepoUrl = 'https://svn.code.sf.net/p/atom-blame-svn-fixture/code/'
 const hgRepoUrl = 'https://josa@bitbucket.org/josa/fixture-hg-repo'
 const fixturePath = path.join(__dirname, '..', 'fixtures')
 
