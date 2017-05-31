@@ -11,7 +11,7 @@ import { cloneGit } from './utils/fixture-repos'
 
 beforeEach(async(() => cloneGit()))
 
-let readmePath = path.join(__dirname, 'fixtures', 'git-repo', 'readme.md')
+let readmePath = path.join(__dirname, 'fixtures', 'git-repo', 'README.md')
 
 describe('Blame', () => {
   let workspaceElement, activationPromise
