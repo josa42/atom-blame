@@ -10,6 +10,10 @@ notifications:
     on_success: never
     on_failure: change
 
+before_install:
+  - whereis svn
+  - whereis hg
+
 before_script:
   - 'echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 

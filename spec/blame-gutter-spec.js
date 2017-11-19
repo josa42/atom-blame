@@ -9,12 +9,14 @@ import path from 'path'
 import async from './utils/async'
 import { cloneGit } from './utils/fixture-repos'
 
+const wait = async (seconds) => new Promise((resolve) => setTimeout(resolve, seconds * 1000))
+
 beforeEach(async(() => cloneGit()))
 
 let readmePath = path.join(__dirname, 'fixtures', 'git-repo', 'README.md')
 
 describe('Blame', () => {
-  let workspaceElement, activationPromise
+  let workspaceElement
 
   function activeGutterElement () {
     const editor = atom.workspace.getActiveTextEditor()
@@ -25,52 +27,49 @@ describe('Blame', () => {
     return gutterElement
   }
 
-  beforeEach(() => {
+  beforeEach(async () => {
     workspaceElement = atom.views.getView(atom.workspace)
-    activationPromise = atom.packages.activatePackage('blame')
+
+    await atom.packages.deactivatePackage('blame')
+    await atom.packages.activatePackage('blame')
   })
 
   describe('when the blame:toggle event is triggered', () => {
-    it('hides and shows the gutter', () => {
-      waitsForPromise(() => atom.workspace.open(readmePath))
+    it('hides and shows the gutter', async () => {
+      await atom.workspace.open(readmePath)
 
-      waitsForPromise(() => {
-        expect(activeGutterElement()).not.toExist()
+      expect(activeGutterElement()).not.toExist()
 
-        atom.commands.dispatch(workspaceElement, 'blame:toggle')
+      atom.commands.dispatch(workspaceElement, 'blame:toggle')
 
-        return activationPromise
-      })
+      // TODO Find a better solution to this
+      await wait(2)
 
-      runs(() => {
-        const gutterElement = activeGutterElement()
-        expect(gutterElement).toExist()
-        expect(gutterElement.style.display).toBe('')
+      const gutterElement = activeGutterElement()
+      expect(gutterElement).toExist()
+      expect(gutterElement.style.display).toBe('')
 
-        atom.commands.dispatch(workspaceElement, 'blame:toggle')
+      atom.commands.dispatch(workspaceElement, 'blame:toggle')
 
-        expect(gutterElement.style.display).toBe('none')
-      })
+      expect(gutterElement.style.display).toBe('none')
     })
   })
+
   describe('when when package is deativated', () => {
-    it('removes the gutter', () => {
-      waitsForPromise(() => atom.workspace.open(readmePath))
+    it('removes the gutter', async () => {
+      await atom.workspace.open(readmePath)
 
-      waitsForPromise(() => {
-        expect(activeGutterElement()).not.toExist()
+      expect(activeGutterElement()).not.toExist()
 
-        atom.commands.dispatch(workspaceElement, 'blame:toggle')
+      atom.commands.dispatch(workspaceElement, 'blame:toggle')
 
-        return activationPromise
-      })
+      // TODO Find a better solution to this
+      await wait(2)
 
-      runs(() => {
-        expect(activeGutterElement()).toExist()
-        atom.packages.deactivatePackage('blame')
+      expect(activeGutterElement()).toExist()
+      await atom.packages.deactivatePackage('blame')
 
-        expect(activeGutterElement()).not.toExist()
-      })
+      expect(activeGutterElement()).not.toExist()
     })
   })
 })
