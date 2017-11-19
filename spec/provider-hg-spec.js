@@ -12,6 +12,10 @@ beforeEach(async(() => cloneHg()))
 
 describe('Blame (hg)', () => {
   it('should blame readme', async((done) => {
+    if (process.env.SKIP_HG_TESTS) {
+      return done()
+    }
+
     provider.blame((result) => {
       expect(result).not.toBe(null)
       expect(result[1]).toEqual({

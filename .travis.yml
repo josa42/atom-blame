@@ -16,6 +16,8 @@ before_install:
   - export TEST_SVN_BIN=$(which svn)
   - export TEST_HG_BIN=$(which hg)
   - echo "use $TEST_GIT_BIN, $TEST_SVN_BIN, $TEST_HG_BIN"
+  - export SKIP_HG_TESTS=true
+  - export SKIP_SVN_TESTS=true
 
 before_script:
   - 'echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
