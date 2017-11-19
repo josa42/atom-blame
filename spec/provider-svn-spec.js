@@ -20,19 +20,19 @@ describe('Blame (svn)', () => {
       expect(result).not.toBe(null)
       expect(result[1]).toEqual({
         rev: '2',
-        author: 'josa42',
+        author: { name: 'josa42' },
         date: '2017-05-31T11:39:33.765Z',
         line: '1'
       })
       expect(result[2]).toEqual({
         rev: '3',
-        author: 'josa42',
+        author: { name: 'josa42' },
         date: '2017-05-31T11:39:56.797Z',
         line: '2'
       })
       expect(result[3]).toEqual({
         rev: '4',
-        author: 'josa42',
+        author: { name: 'josa42' },
         date: '2017-05-31T11:40:43.029Z',
         line: '3'
       })
