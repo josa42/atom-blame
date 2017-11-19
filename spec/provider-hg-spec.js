@@ -20,7 +20,7 @@ describe('Blame (hg)', () => {
       expect(result).not.toBe(null)
       expect(result[1]).toEqual({
         rev: 'af5a6975413a',
-        author:  { name: 'Josa Gesell' },
+        author: { name: 'Josa Gesell' },
         date: '2016-02-18T22:25:28.000Z',
         line: '1'
       })
