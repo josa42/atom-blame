@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.11.0
+## 1.0.0
 - Add Subversion support
 - Add Mecurial support
 
