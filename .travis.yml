@@ -11,8 +11,11 @@ notifications:
     on_failure: change
 
 before_install:
-  - whereis svn
-  - whereis hg
+  # -  if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install mercurial; else brew install mercurial; fi
+  - export TEST_GIT_BIN=$(which git)
+  - export TEST_SVN_BIN=$(which svn)
+  - export TEST_HG_BIN=$(which hg)
+  - echo "use $TEST_GIT_BIN, $TEST_SVN_BIN, $TEST_HG_BIN"
 
 before_script:
   - 'echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'

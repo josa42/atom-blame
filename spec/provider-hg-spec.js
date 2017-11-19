@@ -2,13 +2,13 @@
 
 import path from 'path'
 import async from './utils/async'
-import { cloneSvn } from './utils/fixture-repos'
+import { cloneHg } from './utils/fixture-repos'
 import providerFactory from '../lib/provider/factory'
 
 const filePath = path.join(__dirname, 'fixtures', 'hg-repo', 'README.md')
 const provider = providerFactory(filePath)
 
-beforeEach(async(() => cloneSvn()))
+beforeEach(async(() => cloneHg()))
 
 describe('Blame (hg)', () => {
   it('should blame readme', async((done) => {
