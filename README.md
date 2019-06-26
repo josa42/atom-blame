@@ -4,15 +4,8 @@
 [![Plugin installs!](https://img.shields.io/apm/dm/blame.svg?style=flat-square)](https://atom.io/packages/blame)
 [![Package version!](https://img.shields.io/apm/v/blame.svg?style=flat-square)](https://atom.io/packages/blame)
 [![Dependencies!](https://img.shields.io/david/josa42/atom-blame.svg?style=flat-square)](https://david-dm.org/josa42/atom-blame)
-![Project: Not maintained](https://img.shields.io/badge/Project-Not_maintained-red.svg)
 
 Show blame annotations.
-
----
-
-**Note: the repository is not maintained. If you would like to take over, please open an issue!**
-
----
 
 Supported vcs:
 - git

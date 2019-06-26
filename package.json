@@ -1,30 +1,39 @@
 {
-  "name": "blame",
-  "main": "./lib/init",
-  "version": "1.1.0",
-  "description": "Show git blame as a gutter.",
-  "author": "Josa Gesell <josa@gesell.me>",
-  "keywords": [
-    "blame",
-    "vcs",
-    "git",
-    "svn",
-    "subversion",
-    "hg",
-    "mercurial"
-  ],
-  "repository": "https://github.com/josa42/atom-blame",
-  "bugs": "https://github.com/josa42/atom-blame",
-  "contributors": [],
-  "license": "MIT",
-  "engines": {
-    "atom": ">=1.13.0 <2.0.0"
+  "_from": "https://www.atom.io/api/packages/blame/versions/1.1.0/tarball",
+  "_id": "blame@1.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-HA/o8eSJnoKHbJ12SbTs9A+UMMRsB9fSBfYcSTg6fquCC/NP1o5yksDrvnVnH9P5eLlHv7Gmi99xzfCck6PeRg==",
+  "_location": "/blame",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/blame/versions/1.1.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/blame/versions/1.1.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/blame/versions/1.1.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/blame/versions/1.1.0/tarball"
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/blame/versions/1.1.0/tarball",
+  "_shasum": "75a1b585d0c955e37f91fdf071cf3ea5de6e6a1f",
+  "_spec": "https://www.atom.io/api/packages/blame/versions/1.1.0/tarball",
+  "_where": "C:\\Users\\marez\\AppData\\Local\\Temp\\apm-install-dir-119526-24720-1vh3tyv.rjq",
   "activationCommands": {
     "atom-workspace": [
       "blame:toggle"
     ]
   },
+  "author": {
+    "name": "Josa Gesell",
+    "email": "josa@gesell.me"
+  },
+  "bugs": {
+    "url": "https://github.com/josa42/atom-blame"
+  },
+  "bundleDependencies": false,
+  "contributors": [],
   "dependencies": {
     "blamer": "^0.1.13",
     "color-rainbow": "0.0.0",
@@ -34,9 +43,8 @@
     "moment": "^2.22.2",
     "open": "0.0.5"
   },
-  "scripts": {
-    "lint": "eslint ."
-  },
+  "deprecated": false,
+  "description": "Show git blame as a gutter.",
   "devDependencies": {
     "eslint": "^5.6.1",
     "eslint-config-standard": "^12.0.0",
@@ -44,5 +52,29 @@
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0"
-  }
+  },
+  "engines": {
+    "atom": ">=1.13.0 <2.0.0"
+  },
+  "homepage": "https://github.com/josa42/atom-blame#readme",
+  "keywords": [
+    "blame",
+    "vcs",
+    "git",
+    "svn",
+    "subversion",
+    "hg",
+    "mercurial"
+  ],
+  "license": "MIT",
+  "main": "./lib/init",
+  "name": "blame",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josa42/atom-blame.git"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "version": "1.1.0"
 }
