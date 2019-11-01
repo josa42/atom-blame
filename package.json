@@ -32,7 +32,7 @@
     "git-wrapper": "^0.1.1",
     "gravatar": "^1.4.0",
     "moment": "^2.22.2",
-    "open": "0.0.5"
+    "open": "6.0.0"
   },
   "scripts": {
     "lint": "eslint ."
