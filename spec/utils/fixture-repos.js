@@ -51,7 +51,7 @@ export async function cloneGit () {
 
     return new Promise((resolve, reject) => {
       console.log('git clone ' + gitRepoUrl)
-      git.exec('clone', {}, [ gitRepoUrl, 'git-repo' ], (err, msg) => {
+      git.exec('clone', {}, [gitRepoUrl, 'git-repo'], (err, msg) => {
         if (err) { return reject(err) }
         resolve()
       })

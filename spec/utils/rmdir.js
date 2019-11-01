@@ -10,11 +10,11 @@ function rmdir (dir) {
     return
   }
 
-  let list = fs.readdirSync(dir)
+  const list = fs.readdirSync(dir)
 
   for (let i = 0; i < list.length; i++) {
-    let filename = path.join(dir, list[i])
-    let stat = fs.statSync(filename)
+    const filename = path.join(dir, list[i])
+    const stat = fs.statSync(filename)
 
     if (stat.isDirectory()) {
       rmdir(filename)

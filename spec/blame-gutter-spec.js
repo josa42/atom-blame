@@ -13,7 +13,7 @@ const wait = async (seconds) => new Promise((resolve) => setTimeout(resolve, sec
 
 beforeEach(async(() => cloneGit()))
 
-let readmePath = path.join(__dirname, 'fixtures', 'git-repo', 'README.md')
+const readmePath = path.join(__dirname, 'fixtures', 'git-repo', 'README.md')
 
 describe('Blame', () => {
   let workspaceElement
