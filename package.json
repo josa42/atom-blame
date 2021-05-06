@@ -26,7 +26,7 @@
     ]
   },
   "dependencies": {
-    "blamer": "^0.1.13",
+    "blamer": "^1.0.1",
     "color-rainbow": "0.0.0",
     "git-blame": "^1.4.0",
     "git-wrapper": "^0.1.1",
